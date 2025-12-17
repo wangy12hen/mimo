@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 微信分享元标签 -->
+    <meta property="og:title" content="深圳新春贺喜">
+    <meta property="og:description" content="2025新春快乐，深圳同庆">
+    <meta property="og:type" content="website">
+    <title>2025深圳新春贺喜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 50%, #e53935 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 15px;
+            position: relative;
+        }
+        
+        /* 深圳地标背景装饰 */
+        .shenzhen-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 90%;
+            width: 420px;
+            animation: slideUp 0.8s ease-out;
+            border: 4px solid #ffd700;
+        }
+        
+        .header {
+            font-size: 2.8rem;
+            color: #c62828;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header::after {
+            content: '🎊';
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            font-size: 1.5rem;
+            animation: bounce 1s infinite;
+        }
+        
+        .header::before {
+            content: '🎊';
+            position: absolute;
+            top: -10px;
+            left: -15px;
+            font-size: 1.5rem;
+            animation: bounce 1s infinite;
+            animation-delay: 0.5s;
+        }
+        
+        .year {
+            font-size: 1.8rem;
+            color: #ff6f00;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff6f00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 12px;
+            border-left: 4px solid #ff6f00;
+        }
+        
+        .shenzhen-note {
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+            margin: 10px 0;
+            padding: 8px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            border: 1px dashed #4caf50;
+        }
+        
+        .emoji-group {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .emoji-group span {
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .emoji-group span:nth-child(2) { animation-delay: 0.5s; }
+        .emoji-group span:nth-child(3) { animation-delay: 1s; }
+        .emoji-group span:nth-child(4) { animation-delay: 1.5s; }
+        .emoji-group span:nth-child(5) { animation-delay: 2s; }
+        
+        .btn {
+            background: linear-gradient(45deg, #e53935, #c62828);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4);
+            -webkit-tap-highlight-color: transparent;
+            margin: 6px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 57, 53, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn.gold {
+            background: linear-gradient(45deg, #ffd700, #ffb300);
+            color: #c62828;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn.gold:hover {
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+        
+        .share-tip {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #d32f2f;
+            padding: 12px;
+            background: #ffebee;
+            border-radius: 10px;
+            border: 2px dashed #d32f2f;
+            display: none;
+            font-weight: bold;
+        }
+        
+        .footer {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        
+        /* 动画定义 */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(10deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* 红包动画元素 */
+        .red-packet {
+            position: fixed;
+            width: 40px;
+            height: 50px;
+            background: #d32f2f;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 100;
+            animation: fall 5s linear forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 2px solid #ffd700;
+        }
+        
+        .red-packet::after {
+            content: '福';
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        @keyframes fall {
+            0% { top: -60px; transform: translateX(0); }
+            100% { top: 110vh; transform: translateX(var(--random-x)); }
+        }
+        
+        /* 烟花粒子效果 */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99;
+            animation: explode 1s ease-out forwards;
+        }
+        
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            .header {
+                font-size: 2.2rem;
+            }
+            .year {
+                font-size: 1.5rem;
+            }
+            .message {
+                font-size: 1rem;
+            }
+            .emoji-group {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shenzhen-silhouette"></div>
+    
+    <div class="container">
+        <div class="header">新春贺喜</div>
+        <div class="year">2025 乙巳蛇年</div>
+        
+        <div class="emoji-group">
+            <span>🧧</span>
+            <span>🏮</span>
+            <span>🎆</span>
+            <span>🐍</span>
+            <span>🍊</span>
+        </div>
+        
+        <div class="message">
+            亲爱的深圳朋友<br>
+            金蛇狂舞辞旧岁，紫气东来迎新春<br>
+            愿您在新的一年里：
+            <br><strong>蛇年大吉，万事如意</strong>
+            <br>事业如深圳速度，蒸蒸日上
+            <br>生活似湾区繁花，多姿多彩
+        </div>
+        
+        <div class="shenzhen-note">
+            🌆 深圳花市正热闹，福气临门好运来<br>
+            💡 提示：点击下方按钮，接住好运红包！
+        </div>
+        
+        <button class="btn" onclick="celebrate()">🧧 接财纳福</button>
+        <button class="btn gold" onclick="shareToFriend()">📤 分享祝福</button>
+        
+        <div class="share-tip" id="shareTip">
+            💡 右上角菜单 → "发送给朋友"<br>
+            📱 分享给更多深圳伙伴，共庆新春！
+        </div>
+        
+        <div class="footer">
+            深圳本地宝推荐 | 深圳春节活动精彩纷呈<br>
+            花市、灯会、灯光秀等您来
+        </div>
+    </div>
+
+    <script>
+        // 创建红包雨效果
+        function createRedPacket() {
+            const packet = document.createElement('div');
+            packet.className = 'red-packet';
+            packet.style.left = Math.random() * 90 + 'vw';
+            packet.style.setProperty('--random-x', (Math.random() * 100 - 50) + 'px');
+            
+            // 点击红包获取祝福
+            packet.onclick = function() {
+                const blessings = [
+                    '💰 财源广进！',
+                    '🏥 身体健康！',
+                    '🎓 学业有成！',
+                    '💼 事业顺利！',
+                    '🏠 家庭幸福！',
+                    '🍀 好运连连！'
+                ];
+                const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+                
+                // 显示祝福
+                const toast = document.createElement('div');
+                toast.textContent = randomBlessing;
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(45deg, #ffd700, #ffb300);
+                    color: #c62828;
+                    padding: 15px 25px;
+                    border-radius: 50px;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    z-index: 1000;
+                    animation: pulse 0.5s ease-out;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                `;
+                document.body.appendChild(toast);
+                
+                // 振动反馈
+                if (navigator.vibrate) navigator.vibrate(100);
+                
+                setTimeout(() => {
+                    toast.remove();
+                    packet.remove();
+                }, 1500);
+            };
+            
+            document.body.appendChild(packet);
+            
+            // 5秒后自动移除
+            setTimeout(() => {
+                if (packet.parentNode) packet.remove();
+            }, 5000);
+        }
+        
+        // 创建烟花粒子
+        function createFirework(x, y) {
+            const colors = ['#ffd700', '#ff6f00', '#d32f2f', '#ffffff', '#4caf50'];
+            const particleCount = 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 50 + Math.random() * 50;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+        
+        // 庆祝函数
+        function celebrate() {
+            // 创建多个红包
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createRedPacket, i * 200);
+            }
+            
+            // 在点击位置创建烟花
+            const btn = event.target;
+            const rect = btn.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createFirework(centerX + (Math.random() * 40 - 20), centerY + (Math.random() * 40 - 20));
+                }, i * 100);
+            }
+            
+            // 显示分享提示
+            const shareTip = document.getElementById('shareTip');
+            shareTip.style.display = 'block';
+            shareTip.textContent = '🎉 新春大吉！快分享给深圳的朋友们吧！';
+            
+            // 按钮反馈
+            const btn = document.querySelector('.btn');
+            const originalText = btn.textContent;
+            btn.textContent = '🧧 已接福！';
+            btn.style.background = '#4caf50';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = 'linear-gradient(45deg, #e53935, #c62828)';
+            }, 2000);
+        }
+        
+        // 分享提示函数
+        function shareToFriend() {
+            const shareTip = document.getElementById('shareTip');
+            shareTip.style.display = 'block';
+            shareTip.innerHTML = '💡 微信操作指南：<br>1. 点击右上角"..."<br>2. 选择"发送给朋友"<br>3. 分享给更多深圳伙伴';
+            
+            // 振动反馈
+            if (navigator.vibrate) navigator.vibrate(50);
+            
+            // 创建烟花庆祝
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createFirework(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight
+                    );
+                }, i * 150);
+            }
+            
+            setTimeout(() => {
+                shareTip.innerHTML = '🧧 祝您和家人在深圳新春快乐，阖家幸福！';
+            }, 3000);
+        }
+        
+        // 页面加载时自动创建一些红包
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(createRedPacket, i * 300);
+                }
+            }, 800);
+            
+            // 检测是否在微信中
+            if (/MicroMessenger/i.test(navigator.userAgent)) {
+                console.log('✨ 微信环境已检测，体验更佳！');
+            }
+        });
+        
+        // 添加触摸反馈
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // 点击背景创建烟花
+        document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn') || e.target.closest('.btn')) return;
+            createFirework(e.clientX, e.clientY);
+        });
+    </script>
+</body>
+</html>
